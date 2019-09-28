@@ -76,10 +76,7 @@ WSGI_APPLICATION = 'djangoproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'allakv$my-project',
-        'USER': 'allakv',
-        'PASSWORD': '3Fg_EhGjTW4Z7p@',
-        'HOST': 'allakv.mysql.pythonanywhere-services.com',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

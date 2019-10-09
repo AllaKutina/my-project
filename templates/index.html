@@ -1,12 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello world!</h1>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+    <div class="d-flex flex-wrap card-deck">
+        <a class="card mb-5 col-lg">
+            <img class="card-img-top">
+            <span class="card-body">
+                <span class="card-title">Название карточки</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </span>
+        </a>
+        <a class="card mb-5 col-lg">
+            <img class="card-img-top">
+            <span class="card-body">
+                <span class="card-title">Название карточки</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </span>
+        </a>
+        <a class="card mb-5 col-sm">
+            <img class="card-img-top">
+            <span class="card-body">
+                <span class="card-title">Название карточки</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </span>
+        </a>
+        <a class="card mb-5 col-sm">
+            <img class="card-img-top">
+            <span class= "card-body">
+                <span class="card-title">Название карточки</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </span>
+        </a>
+        <a class="card mb-5 col-sm">
+            <img class="card-img-top">
+            <span class= "card-body">
+                <span class="card-title">Название карточки</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </span>
+        </a>
+    </div>
+    <nav class="float-right">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active">
+            <span class="page-link">
+              2
+              <span class="sr-only">(current)</span>
+            </span>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+        </ul>
+      </nav>
+{% endblock %}

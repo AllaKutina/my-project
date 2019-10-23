@@ -1,17 +1,28 @@
 {% extends "base.html" %}
+{% load static %}
+{% block head %}
+<title>Недвижимость</title>
+{% endblock %}
 {% block content %}
 	{% for category in categories %}
-	<h2>{{ category.title }}</h2>
 	<div class="products">
-		{% for product in products %}
-		<a href="#" class="card products__item">
-			<img class="card-img-top">
-			<span class="card-body">
-				<span class="card-title">{{ product.rooms }}-комнатная, {{ product.square }}</h5>
-				<p class="card-text">{{ product.price }}</p>
-			</span>
-		</a>
-		{% endfor %}
+		<h2 class="mb-4">{{ category.title }}</h2>
+		<div class="products__list">
+			{% for product in category.products.all|slice:":3" %}
+			<a href="{{ product.get_absolute_url }}" class="card products__item">
+				{% if product.image %}
+				<span class="products__image" style="background-image:url('{{ product.image.url }}')"></span>
+				{% else %}
+				<span class="products__image products__image_no-img"></span>
+				{% endif %}
+				<span class="card-body">
+					<span>{{ product.rooms }}-комнатная квартира, {{ product.square }} м²</h5>
+					<p class="products__price">{{ product.price }} ₽</p>
+				</span>
+			</a>
+			{% endfor %}
+		</div>
+		<a class="btn btn-primary products__btn" href="{{ category.get_absolute_url }}">Показать еще</a>
 	</div>
 	{% endfor %}
 {% endblock %}

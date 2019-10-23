@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+<title>{{ product.rooms }}, {{ product.square }}</title>
+{% endblock %}
+{% block content %}
+    <div class="product">
+        <h1 class="product__title">{{ product.rooms }}-к квартира, {{ product.square }} м²</h1>
+        <div class="product__container">
+            <div class="product__image-wrap">
+                {% if product.image %}
+                <span class="product__image" style="background-image:url('{{ product.image.url }}')"></span>
+                {% else %}
+                <span class="product__image product__image_no-img"></span>
+                {% endif %}
+            </div>
+            <div class="product__information">
+                <div><b>Адрес:</b> {{ product.address }}</div>
+                <div><b>Стоимость: </b><span class="product__price">{{ product.price }} ₽</span></div>
+            </div>
+        </div>
+        <div>{{ product.description }}</div>
+    </div>
+{% endblock %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -8,6 +9,9 @@ class Category(models.Model):
     class Meta():
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
+
+    def get_absolute_url(self):
+        return reverse('products:category', kwargs={'pk':self.pk})
 
 
 class Product(models.Model):
@@ -19,8 +23,12 @@ class Product(models.Model):
     owner = models.CharField(max_length=200, verbose_name='Владелец')
     phone = models.CharField(max_length=12, verbose_name='Телефон')
     email = models.EmailField(max_length=30, verbose_name='Email', blank=True, null=True)
-    category = models.ForeignKey(Category, models.PROTECT, verbose_name='Категория')
+    image = models.ImageField(upload_to='products/img', height_field=None, width_field=None, max_length=100, verbose_name='Изображение', blank=True, null=True)
+    category = models.ForeignKey(Category, models.PROTECT, verbose_name='Категория', related_name="products")
 
     class Meta():
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+
+    def get_absolute_url(self):
+        return reverse('products:product', kwargs={'pk':self.pk})

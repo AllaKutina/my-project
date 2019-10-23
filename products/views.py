@@ -9,7 +9,7 @@ class CategoriesList(ListView):
 
 class CategoriesDetail(DetailView):
     model = Category
-
+    template_name = 'catalog_detail.html'
 
 class ProductsList(ListView):
     model = Product
@@ -17,6 +17,7 @@ class ProductsList(ListView):
 
 class ProductsDetail(DetailView):
     model = Product
+    template_name = 'product_detail.html'
 
 
 class MainPage(TemplateView):
@@ -24,8 +25,7 @@ class MainPage(TemplateView):
 
     def get_context_data(self, **kwargs):
         return {
-            'categories': Category.objects.all(),
-            'products': Product.objects.all()[:3],
+            'categories': Category.objects.all()
         }
 
 

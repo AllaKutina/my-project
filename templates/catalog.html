@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+<title>Каталог</title>
+{% endblock %}
+{% block content %}
+    <h1 class="mb-5">Каталог</h1>
+    <div class="products">
+        <div class="products__list">
+            {% for product in products %}
+            <a href="{{ product.get_absolute_url }}" class="card products__item">
+                {% if product.image %}
+                <span class="products__image" style="background-image:url('{{ product.image.url }}')"></span>
+                {% else %}
+                <span class="products__image products__image_no-img"></span>
+                {% endif %}
+                <span class="card-body">
+                    <span>{{ product.rooms }}-комнатная, {{ product.square }} м²</h5>
+                    <p class="products__price">{{ product.price }} ₽</p>
+                </span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <nav class="float-right">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+        </ul>
+    </nav>
+{% endblock %}

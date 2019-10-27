@@ -25,4 +25,5 @@ urlpatterns = [
     path('', include('products.urls', namespace='products')),
     path('', MainPage.as_view()),
     path('catalog', CatalogPage.as_view()),
+    path('feedback', include('feedback.urls', namespace='feedback')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

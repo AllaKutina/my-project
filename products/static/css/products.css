@@ -1,11 +1,124 @@
 .products {
     display: flex;
+    flex-direction:column;
+    margin-bottom: 30px;
+}
+
+.products:last-child {
+    margin-bottom: 0;
+}
+
+.products .products__price {
+    font-size: 16px;
+    color: #000;
+}
+
+.products .products__list {
+    display: flex;
     flex-wrap: wrap;
-    margin-left: -20px
+    margin-left: -20px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+    .products .products__list {
+        margin-left: 0;
+    }
+}
+
+.products .products__btn {
+    align-self: center;
 }
 
 .products .products__item {
     margin-left: 20px;
     margin-bottom: 20px;
     width: calc(33.3333333% - 20px);
+}
+
+@media (max-width: 1024px) {
+    .products .products__item {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 767px) {
+    .products .products__item {
+        margin-left: 0;
+        width: calc(100%);
+    }
+}
+
+.products .products__item:hover {
+    text-decoration: none;
+}
+
+.products .products__image {
+    width: 100%;
+    height: 250px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.products .products__image.products__image_no-img {
+    background-image: url("/static/img/no-img.png");
+}
+
+.product {
+
+}
+
+.product .product__title {
+    margin-bottom: 20px;
+}
+
+.product .product__container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.product .product__information {
+   margin-left: 30px;
+}
+
+.product .product__price {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.categoties {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -20px;
+}
+
+.categoties .categoties__item {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    width: calc(50% - 20px);
+}
+
+.product {
+
+}
+
+.product__image {
+    display: block;
+    width: 500px;
+    height: 300px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.pagination .pagination__list {
+    display: flex;
+    align-items: center;
+}
+
+.pagination .pagination__item {
+    display: block;
+    padding: 0 6px;
 }

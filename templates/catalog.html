@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+<title>Каталог</title>
+{% endblock %}
+{% block content %}
+    <h1 class="mb-5">Каталог</h1>
+    <div class="products">
+        <div class="products__list">
+            {% for product in object_list %}
+            <a href="{{ product.get_absolute_url }}" class="card products__item">
+                {% if product.image %}
+                <span class="products__image" style="background-image:url('{{ product.image.url }}')"></span>
+                {% else %}
+                <span class="products__image products__image_no-img"></span>
+                {% endif %}
+                <span class="card-body">
+                    <span>{{ product.category.title }} {{ product.square }} м²</span>
+                    <p class="products__price">{{ product.price }} ₽</p>
+                </span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="pagination float-right">
+        <span class="pagination__list">
+            {% if page_obj.has_previous %}
+                <a class="pagination__item" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+            {% endif %}
+                <span>
+                    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+                </span>
+            {% if page_obj.has_next %}
+                <a class="pagination__item" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}

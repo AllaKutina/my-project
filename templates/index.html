@@ -1,52 +1,28 @@
 {% extends "base.html" %}
+{% load static %}
+{% block head %}
+<title>Недвижимость</title>
+{% endblock %}
 {% block content %}
-    <div class="products">
-        <a class="card products__item">
-            <img class="card-img-top">
-            <span class="card-body">
-                <span class="card-title">Название карточки</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </span>
-        </a>
-        <a class="card products__item">
-            <img class="card-img-top">
-            <span class="card-body">
-                <span class="card-title">Название карточки</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </span>
-        </a>
-        <a class="card products__item">
-            <img class="card-img-top">
-            <span class="card-body">
-                <span class="card-title">Название карточки</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </span>
-        </a>
-        <a class="card products__item">
-            <img class="card-img-top">
-            <span class= "card-body">
-                <span class="card-title">Название карточки</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </span>
-        </a>
-        <a class="card products__item">
-            <img class="card-img-top">
-            <span class= "card-body">
-                <span class="card-title">Название карточки</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </span>
-        </a>
-    </div>
-    <nav class="float-right">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active">
-            <span class="page-link">
-              2
-              <span class="sr-only">(current)</span>
-            </span>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-        </ul>
-      </nav>
+	{% for category in categories %}
+	<div class="products">
+		<h2 class="mb-4">{{ category.title_plural }}</h2>
+		<div class="products__list">
+			{% for product in category.products.all|slice:":3" %}
+			<a href="{{ product.get_absolute_url }}" class="card products__item">
+				{% if product.image %}
+				<span class="products__image" style="background-image:url('{{ product.image.url }}')"></span>
+				{% else %}
+				<span class="products__image products__image_no-img"></span>
+				{% endif %}
+				<span class="card-body">
+					<span>{{ product.category.title }} {{ product.square }} м²</span>
+					<p class="products__price">{{ product.price }} ₽</p>
+				</span>
+			</a>
+			{% endfor %}
+		</div>
+		<a class="btn btn-primary products__btn" href="{{ category.get_absolute_url }}">Показать еще</a>
+	</div>
+	{% endfor %}
 {% endblock %}

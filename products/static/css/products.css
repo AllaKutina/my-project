@@ -112,3 +112,13 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.pagination .pagination__list {
+    display: flex;
+    align-items: center;
+}
+
+.pagination .pagination__item {
+    display: block;
+    padding: 0 6px;
+}

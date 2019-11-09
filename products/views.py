@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, TemplateView
 from .models import Category, Product
+from django.core.paginator import Paginator
 
 
 class CategoriesList(ListView):
@@ -10,6 +11,16 @@ class CategoriesList(ListView):
 class CategoriesDetail(DetailView):
     model = Category
     template_name = 'catalog_detail.html'
+
+    def get_context_data(self, **kwargs):
+       data = super().get_context_data(**kwargs)
+       products = Product.objects.filter(category=data['object'])
+       paginator = Paginator(products, 3)
+       page = self.request.GET.get('page')
+       data['products'] = paginator.get_page(page)
+
+       return data
+
 
 class ProductsList(ListView):
     model = Product
@@ -29,10 +40,8 @@ class MainPage(TemplateView):
         }
 
 
-class CatalogPage(TemplateView):
+class CatalogPage(ListView):
+    model = Product
     template_name = 'catalog.html'
-
-    def get_context_data(self, **kwargs):
-        return {
-            'products': Product.objects.all(),
-        }
+    paginate_by = 3
+    page_kwarg = 'page'

@@ -12,6 +12,16 @@ class CategoriesDetail(DetailView):
     model = Category
     template_name = 'catalog_detail.html'
 
+    def get_context_data(self, **kwargs):
+       data = super().get_context_data(**kwargs)
+       products = Product.objects.filter(category=data['object'])
+       paginator = Paginator(products, 3)
+       page = self.request.GET.get('page')
+       data['products'] = paginator.get_page(page)
+
+       return data
+
+
 class ProductsList(ListView):
     model = Product
 

@@ -6,7 +6,7 @@
 {% block content %}
 	{% for category in categories %}
 	<div class="products">
-		<h2 class="mb-4">{{ category.title }}</h2>
+		<h2 class="mb-4">{{ category.title_plural }}</h2>
 		<div class="products__list">
 			{% for product in category.products.all|slice:":3" %}
 			<a href="{{ product.get_absolute_url }}" class="card products__item">
@@ -16,7 +16,7 @@
 				<span class="products__image products__image_no-img"></span>
 				{% endif %}
 				<span class="card-body">
-					<span>{{ product.rooms }}-комнатная квартира, {{ product.square }} м²</h5>
+					<span>{{ product.category.title }} {{ product.square }} м²</span>
 					<p class="products__price">{{ product.price }} ₽</p>
 				</span>
 			</a>

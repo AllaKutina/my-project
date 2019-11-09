@@ -3,7 +3,8 @@ from django.urls import reverse
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=200, verbose_name='Заголовок')
+    title = models.CharField(max_length=200, verbose_name='Заголовок в ед. числе')
+    title_plural = models.CharField(max_length=200, verbose_name='Заголовок во мн. числе')
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
 
     class Meta():
